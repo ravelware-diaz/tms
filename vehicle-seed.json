@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "police_reg_number": "B 1321 UI"
+    },
+    {
+        "id": 2,
+        "police_reg_number": "B 3123 YT"
+    },
+    {
+        "id": 3,
+        "police_reg_number": "B 9862 PO"
+    },
+    {
+        "id": 4,
+        "police_reg_number": "B 3322 PL"
+    },
+    {
+        "id": 5,
+        "police_reg_number": "B 4341 JH"
+    },
+    {
+        "id": 6,
+        "police_reg_number": "B 7182 AW"
+    },
+    {
+        "id": 7,
+        "police_reg_number": "B 0956 DS"
+    },
+    {
+        "id": 8,
+        "police_reg_number": "B 1423 MN"
+    },
+    {
+        "id": 9,
+        "police_reg_number": "B 7098 ZA"
+    },
+    {
+        "id": 10,
+        "police_reg_number": "B 0767 BG"
+    }
+]

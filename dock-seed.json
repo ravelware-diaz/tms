@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "dock_code": "A001",
+        "queueCount": 0
+    },
+    {
+        "id": 2,
+        "dock_code": "A002",
+        "queueCount": 0
+    },
+    {
+        "id": 3,
+        "dock_code": "B001",
+        "queueCount": 0
+    },
+    {
+        "id": 4,
+        "dock_code": "B002",
+        "queueCount": 0
+    }
+]   
