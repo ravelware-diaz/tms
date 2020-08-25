@@ -1,11 +1,16 @@
-const { tms_dock } = require('../models')
+const { tms_dock, tms_queue } = require('../models')
+
 const queryAvailable = (t) => {
     return tms_dock.findAll({
-        where: {
-            availability: 'available'
-        },
+        include: [
+            {
+                model: tms_queue,
+                attributes: [ 'check_in' ]
+            }
+        ],
+        order: [ ['queueCount', 'asc'], [tms_queue, 'check_in', 'asc'] ],
         limit: 1
-    }, { transaction: t })
+     }, { transaction: t })
 }
 
 module.exports = queryAvailable
