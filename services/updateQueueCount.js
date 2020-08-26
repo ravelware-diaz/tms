@@ -1,15 +1,11 @@
 const { tms_dock } = require('../models')
 
-const updateQueueCount = (data, flag, t) => {
+const updateQueueCount = (id, flag, t) => {
     let newData
-    flag === 'check_in' ? newData = { queueCount: +1 } : newData = { queueCount: -1 }
-    return tms_dock.update(
+    flag === 'increment' ? newData = { queueCount: +1 } : newData = { queueCount: -1 }
+    return tms_dock.increment(
         newData,
-        {
-            where: {
-                id: data[0].id
-            }
-        },
+        { where: { id } },
         { transaction: t }
     )
 }

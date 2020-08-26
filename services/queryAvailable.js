@@ -5,7 +5,7 @@ const queryAvailable = (t) => {
         include: [
             {
                 model: tms_queue,
-                attributes: [ 'check_in' ]
+                attributes: [ 'check_in', 'queueCount' ]
             }
         ],
         order: [ ['queueCount', 'asc'], [tms_queue, 'check_in', 'asc'] ],

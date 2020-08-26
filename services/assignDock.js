@@ -5,7 +5,6 @@ const assignDock = ({ dataVehicle, resultQueryAvailable }, t) => {
         vehicle_id: dataVehicle,
         dock_id: resultQueryAvailable[0].id
     }
-    console.log(data, 'INI DATA')
     return tms_queue.create(data, { transaction: t })
 }
 

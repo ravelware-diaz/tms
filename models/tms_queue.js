@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeCreate: (tms_queue, options) => {
-        tms_queue.status = 'pending'
+        tms_queue.status = 'Pending'
         tms_queue.check_in = new Date()
       }
     },
