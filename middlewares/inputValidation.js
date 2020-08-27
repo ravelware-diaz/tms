@@ -2,10 +2,9 @@ const { tms_dock, tms_queue } = require('../models')
 const { Op } = require("sequelize")
 
 class InputValidation {
-    static baseValidation(req, res, next, status) {
+    static baseValidation(req, res, next, status, opt) {
         const id = req.body.id
         const dockId = req.params.id
-        console.log(dockId)
         tms_dock.findOne({
             include: [
                 {
@@ -20,15 +19,20 @@ class InputValidation {
         })
         .then(result => {
             if (result) { //check if id is exist or not in database
-                if (dockId == result.tms_queues[0].id) { // check if queues will be placed or removed from correctt dock
+                if (opt !== 'Cancel') {
+                    if (dockId == result.tms_queues[0].id) { // check if queues will be placed or removed from correctt dock
+                        req.result = result
+                        return next()
+                    } else {
+                        return next({
+                            name: 'BadRequest',
+                            errors: [{ message: 'wrong dock!' }]
+                        })
+                    }                
+                } else {
                     req.result = result
                     return next()
-                } else {
-                    return next({
-                        name: 'BadRequest',
-                        errors: [{ message: 'wrong dock!' }]
-                    })
-                }                
+                }
             } else {
                 return next({
                     name: 'NotFound',
@@ -40,12 +44,16 @@ class InputValidation {
             return next(err)
         })
     }
+    static async cancelValidation(req, res, next) {
+        InputValidation.baseValidation(req, res, next, 'Pending', 'Cancel')        
+    }
+
     static async startLoadingValidation(req, res, next) {
-        InputValidation.baseValidation(req, res, next, 'Pending')        
+        InputValidation.baseValidation(req, res, next, 'Pending', 'Start Loading')        
     }
 
     static async checkOutValidation(req, res, next) {
-        InputValidation.baseValidation(req, res, next, 'On Progress')        
+        InputValidation.baseValidation(req, res, next, 'On Progress', 'Checkout')        
     }
 }
 

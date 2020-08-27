@@ -1,11 +1,11 @@
 const { tms_dock, tms_queue } = require('../models')
 
 const queryAvailable = (t) => {
-    return tms_dock.findAll({
+    return tms_dock.findOne({
         include: [
             {
                 model: tms_queue,
-                attributes: [ 'check_in', 'queueCount' ]
+                attributes: [ 'check_in' ]
             }
         ],
         order: [ ['queueCount', 'asc'], [tms_queue, 'check_in', 'asc'] ],
